@@ -36,11 +36,11 @@ class MainViewModel: ViewModel() {
                     call: Call<GithubResponse>,
                     response: Response<GithubResponse>
                 ) {
+                    _isLoading.value = false
                     if (response.isSuccessful){
                         val responseBody = response.body()
                         if (responseBody != null) {
                             _listUser.value = response.body()?.items as ArrayList<ItemsItem>?
-                            //listUser.postValue(response.body()?.items as ArrayList<ItemsItem>?)
                         }
                     } else {
                         Log.e(TAG, "onFailure: ${response.message()}")
@@ -48,6 +48,7 @@ class MainViewModel: ViewModel() {
                 }
 
                 override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
+                    _isLoading.value = false
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                 }
             })
@@ -62,6 +63,7 @@ class MainViewModel: ViewModel() {
                     call: Call<GithubResponse>,
                     response: Response<GithubResponse>
                 ) {
+                    _isLoading.value = false
                     if (response.isSuccessful){
                         val responseBody = response.body()
                         if (responseBody != null) {
@@ -73,6 +75,7 @@ class MainViewModel: ViewModel() {
                 }
 
                 override fun onFailure(call: Call<GithubResponse>, t: Throwable) {
+                    _isLoading.value =false
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                 }
             })

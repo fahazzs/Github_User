@@ -12,8 +12,19 @@ import com.dicoding.submissiongithubuser.databinding.ItemUserBinding
 
 class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemClickCallback = onItemClickCallback
+    }
+
     inner class MyViewHolder(val binding: ItemUserBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: ItemsItem){
+
+            binding.root.setOnClickListener{
+                onItemClickCallback?.onItemClicked(item)
+            }
+
             binding.apply {
                 Glide.with(binding.profileImage.context)
                     .load(item.avatarUrl)
@@ -51,5 +62,9 @@ class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBA
                 return oldItem == newItem
             }
         }
+    }
+
+    interface OnItemClickCallback{
+        fun onItemClicked(data: ItemsItem)
     }
 }

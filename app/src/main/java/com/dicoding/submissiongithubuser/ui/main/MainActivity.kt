@@ -1,5 +1,6 @@
 package com.dicoding.submissiongithubuser.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import com.dicoding.submissiongithubuser.R
 import com.dicoding.submissiongithubuser.data.response.ItemsItem
 import com.dicoding.submissiongithubuser.databinding.ActivityMainBinding
 import com.dicoding.submissiongithubuser.databinding.ItemUserBinding
+import com.dicoding.submissiongithubuser.ui.detail.DetailUserActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,10 +31,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
+        adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: ItemsItem) {
+                Intent(this@MainActivity, DetailUserActivity::class.java).also {
+                    it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.login)
+                    startActivity(it)
+                }
+            }
+
+        })
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
@@ -57,22 +66,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            if(viewModel.listUser.value!=null) viewModel.setSearchUser("fahaz")
+            showLoading(true)
+            if(viewModel.listUser.value==null) viewModel.setSearchUser(USERNAME)
             viewModel.listUser.observe(this@MainActivity){ user ->
                 if (user != null){
                     setUserData(user)
                     showLoading(false)
                 }
             }
-
-            /*
-            viewModel.getSearchUser().observe(this@MainActivity, {
-                if (it != null){
-                    adapter.currentList
-                    showLoading(false)
-                }
-            })
-             */
         }
 
     }
