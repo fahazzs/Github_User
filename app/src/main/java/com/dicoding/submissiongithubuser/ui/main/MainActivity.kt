@@ -57,13 +57,22 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            if(viewModel.listUser.value!=null) viewModel.setSearchUser("fahaz")
+            viewModel.listUser.observe(this@MainActivity){ user ->
+                if (user != null){
+                    setUserData(user)
+                    showLoading(false)
+                }
+            }
 
+            /*
             viewModel.getSearchUser().observe(this@MainActivity, {
                 if (it != null){
                     adapter.currentList
                     showLoading(false)
                 }
             })
+             */
         }
 
         viewModel.listUser.observe(this){ user ->

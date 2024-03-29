@@ -16,8 +16,8 @@ import retrofit2.Retrofit
 
 class MainViewModel: ViewModel() {
 
-    val _listUser = MutableLiveData<ArrayList<ItemsItem>>()
-    val listUser: MutableLiveData<ArrayList<ItemsItem>> = _listUser
+    val _listUser = MutableLiveData<ArrayList<ItemsItem>?>()
+    val listUser: MutableLiveData<ArrayList<ItemsItem>?> = _listUser
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
@@ -78,11 +78,11 @@ class MainViewModel: ViewModel() {
             })
     }
 
-    fun getSearchUser(): LiveData<ArrayList<ItemsItem>> {
+    fun getSearchUser(): LiveData<ArrayList<ItemsItem>?> {
         return listUser
     }
 
-    fun getListUser(): LiveData<ArrayList<ItemsItem>> {
+    fun getListUser(): LiveData<ArrayList<ItemsItem>?> {
         return listUser
     }
 }
