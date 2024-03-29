@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SubmissionGithubUser</string>
+    <string name="searchbar_hint">Masukkan Nama User</string>
+</resources>
