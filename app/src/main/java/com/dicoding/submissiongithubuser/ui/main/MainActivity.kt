@@ -75,9 +75,6 @@ class MainActivity : AppCompatActivity() {
              */
         }
 
-        viewModel.listUser.observe(this){ user ->
-            setUserData(user)
-        }
     }
 
 
