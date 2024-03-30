@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cream"
     tools:context=".ui.detail.DetailUserActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -15,6 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.057"
+        app:civ_border_width="3dp"
+        app:civ_border_color="@color/white"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -58,6 +61,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="16dp"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_people"
             tools:text="10 Followers"/>
 
@@ -68,6 +72,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="12dp"
             android:textSize="14sp"
+            android:textStyle="bold"
             app:drawableStartCompat="@drawable/ic_people"
             tools:text="10 Following"/>
     </LinearLayout>
@@ -77,6 +82,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="@color/cream"
+        app:tabTextColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -85,6 +92,7 @@
         android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/tabs"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
