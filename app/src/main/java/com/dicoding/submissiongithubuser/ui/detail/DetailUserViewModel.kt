@@ -5,12 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.submissiongithubuser.data.response.DetailUserResponse
-import com.dicoding.submissiongithubuser.data.response.ItemsItem
 import com.dicoding.submissiongithubuser.data.retrofit.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class DetailUserViewModel: ViewModel() {
 

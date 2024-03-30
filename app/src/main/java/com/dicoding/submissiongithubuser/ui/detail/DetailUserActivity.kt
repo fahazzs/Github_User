@@ -6,7 +6,6 @@ import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.dicoding.submissiongithubuser.R
 import com.dicoding.submissiongithubuser.databinding.ActivityDetailUserBinding
 
 class DetailUserActivity : AppCompatActivity() {

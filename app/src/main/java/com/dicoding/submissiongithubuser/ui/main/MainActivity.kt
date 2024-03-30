@@ -8,11 +8,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.dicoding.submissiongithubuser.R
 import com.dicoding.submissiongithubuser.data.response.ItemsItem
 import com.dicoding.submissiongithubuser.databinding.ActivityMainBinding
-import com.dicoding.submissiongithubuser.databinding.ItemUserBinding
 import com.dicoding.submissiongithubuser.ui.detail.DetailUserActivity
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: UserAdapter
 
     companion object {
-        private const val TAG = "MainViewModel"
         private const val USERNAME = "Arif"
     }
 
@@ -30,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.hide()
 
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
@@ -40,12 +38,13 @@ class MainActivity : AppCompatActivity() {
                     startActivity(it)
                 }
             }
-
         })
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MainViewModel::class.java)
 
-        supportActionBar?.hide()
+        viewModel.isLoading.observe(this@MainActivity){
+            showLoading(it)
+        }
 
         binding.apply {
             rvUser.layoutManager = LinearLayoutManager(this@MainActivity)
@@ -75,9 +74,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
-
 
     private fun setUserData(userData: ArrayList<ItemsItem>){
         adapter.submitList(userData)
