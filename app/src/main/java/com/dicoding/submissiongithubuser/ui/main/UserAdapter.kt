@@ -14,14 +14,14 @@ class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBA
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-    inner class MyViewHolder(val binding: ItemUserBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: ItemsItem){
+    inner class MyViewHolder(val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: ItemsItem) {
 
-            binding.root.setOnClickListener{
+            binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(item)
             }
 
@@ -47,7 +47,7 @@ class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBA
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemsItem>(){
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ItemsItem>() {
             override fun areItemsTheSame(
                 oldItem: ItemsItem,
                 newItem: ItemsItem
@@ -64,7 +64,7 @@ class UserAdapter : ListAdapter<ItemsItem, UserAdapter.MyViewHolder>(DIFF_CALLBA
         }
     }
 
-    interface OnItemClickCallback{
+    interface OnItemClickCallback {
         fun onItemClicked(data: ItemsItem)
     }
 }

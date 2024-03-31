@@ -17,6 +17,7 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
     private lateinit var viewModel: FollowingViewModel
     private lateinit var adapter: UserAdapter
     private lateinit var username: String
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,7 +34,6 @@ class FollowingFragment : Fragment(R.layout.fragment_follow) {
             rvUser.layoutManager = LinearLayoutManager(activity)
             rvUser.adapter = adapter
         }
-
         showLoading(true)
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowingViewModel::class.java)
         viewModel.setListFollowing(username)

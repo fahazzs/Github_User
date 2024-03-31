@@ -10,24 +10,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowersViewModel: ViewModel() {
+class FollowersViewModel : ViewModel() {
 
     val _listFollowers = MutableLiveData<ArrayList<ItemsItem>?>()
     val listFollowers: MutableLiveData<ArrayList<ItemsItem>?> = _listFollowers
 
-    companion object {
-        private const val TAG = "FollowersViewModel"
-    }
-
-    fun setListFollowers(username: String){
+    fun setListFollowers(username: String) {
         ApiConfig.getApiService()
             .getFollowers(username)
-            .enqueue(object : Callback<ArrayList<ItemsItem>?>{
+            .enqueue(object : Callback<ArrayList<ItemsItem>?> {
                 override fun onResponse(
                     call: Call<ArrayList<ItemsItem>?>,
                     response: Response<ArrayList<ItemsItem>?>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         _listFollowers.postValue(response.body())
                     }
                 }
@@ -35,11 +31,14 @@ class FollowersViewModel: ViewModel() {
                 override fun onFailure(call: Call<ArrayList<ItemsItem>?>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                 }
-
             })
     }
 
-    fun getListFollowers(): LiveData<ArrayList<ItemsItem>?>{
+    fun getListFollowers(): LiveData<ArrayList<ItemsItem>?> {
         return listFollowers
+    }
+
+    companion object {
+        private const val TAG = "FollowersViewModel"
     }
 }

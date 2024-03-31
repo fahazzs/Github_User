@@ -10,7 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FollowingViewModel: ViewModel() {
+class FollowingViewModel : ViewModel() {
 
     val _listFollowing = MutableLiveData<ArrayList<ItemsItem>?>()
     val listFollowing: MutableLiveData<ArrayList<ItemsItem>?> = _listFollowing
@@ -19,15 +19,15 @@ class FollowingViewModel: ViewModel() {
         private const val TAG = "FollowingViewModel"
     }
 
-    fun setListFollowing(username: String){
+    fun setListFollowing(username: String) {
         ApiConfig.getApiService()
             .getFollowing(username)
-            .enqueue(object : Callback<ArrayList<ItemsItem>?>{
+            .enqueue(object : Callback<ArrayList<ItemsItem>?> {
                 override fun onResponse(
                     call: Call<ArrayList<ItemsItem>?>,
                     response: Response<ArrayList<ItemsItem>?>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         _listFollowing.postValue(response.body())
                     }
                 }
@@ -35,11 +35,10 @@ class FollowingViewModel: ViewModel() {
                 override fun onFailure(call: Call<ArrayList<ItemsItem>?>, t: Throwable) {
                     Log.e(TAG, "onFailure: ${t.message.toString()}")
                 }
-
             })
     }
 
-    fun getListFollowing(): LiveData<ArrayList<ItemsItem>?>{
+    fun getListFollowing(): LiveData<ArrayList<ItemsItem>?> {
         return listFollowing
     }
 }

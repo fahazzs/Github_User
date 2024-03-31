@@ -35,10 +35,13 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         }
 
         showLoading(true)
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowersViewModel::class.java)
         viewModel.setListFollowers(username)
         viewModel.getListFollowers().observe(viewLifecycleOwner, {
-            if (it != null){
+            if (it != null) {
                 setUserData(it)
                 showLoading(false)
             }
@@ -50,12 +53,12 @@ class FollowersFragment : Fragment(R.layout.fragment_follow) {
         _binding = null
     }
 
-    private fun setUserData(userData: ArrayList<ItemsItem>){
+    private fun setUserData(userData: ArrayList<ItemsItem>) {
         adapter.submitList(userData)
         binding.rvUser.adapter = adapter
     }
 
-    private fun showLoading(isLoading: Boolean){
+    private fun showLoading(isLoading: Boolean) {
         if (isLoading) binding.progressBar.visibility = View.VISIBLE
         else binding.progressBar.visibility = View.GONE
     }
